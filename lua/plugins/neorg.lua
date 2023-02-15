@@ -1,0 +1,24 @@
+return {
+  -- "nvim-neorg/neorg",
+  -- build = ":Neorg sync-parsers", -- This is the important bit!
+  -- config = function()
+  --   require("neorg").setup({
+  --     load = {
+  --       ["core.defaults"] = {},
+  --       ["core.norg.dirman"] = {
+  --         config = {
+  --           workspaces = {
+  --             school = "~/Documents/Notes/School/",
+  --           },
+  --         },
+  --       },
+  --       ['core.norg.completion'] = {
+  --         config = {
+  --           engine = "nvim-cmp",
+  --         },
+  --       },
+  --       ['core.norg.concealer'] = {}
+  --     },
+  --   })
+  -- end,
+}
