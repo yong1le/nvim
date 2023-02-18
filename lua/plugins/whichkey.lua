@@ -21,6 +21,7 @@ return {
       ["<leader>gh"] = { name = "+hunks" },
       ["<leader>q"] = { name = "+quit/session" },
       ["<leader>s"] = { name = "+search" },
+      ["<leader>t"] = { name = "+terminal" },
       ["<leader>sn"] = { name = "+noice" },
       ["<leader>u"] = { name = "+ui" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },

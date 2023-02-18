@@ -1,19 +1,16 @@
 return {
   "CRAG666/code_runner.nvim",
   keys = {
-    -- { "<leader>rr", "<cmd>RunCode<cr>", { desc =  "Run Code" , noremap = true, silent = true } },
-    -- { "<leader>r", "<cmd>RunFile term<cr>", { desc =  "Run File in Terminal" , noremap = true, silent = true } },
     { "<leader>r", "<cmd>RunFile float<cr>", desc="Run Code", {noremap = true, silent = true } },
-    -- { "<leader>rc", "<cmd>RunFile float<cr>", { desc =  "Close Run" , noremap = true, silent = true } },
   },
   config = function()
     require("code_runner").setup({
-      mode = "float",
+      mode = "term",
       focus = true,
       startinsert = true,
       term = {
         position = "bot",
-        size = 12,
+        size = 20,
       },
       float = {
         border = 'single'
