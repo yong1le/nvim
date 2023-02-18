@@ -7,5 +7,7 @@ augroup set-commentstring-ag
 autocmd!
 autocmd BufEnter *.cpp,*.h,*.c :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
 autocmd BufFilePost *.cpp,*.h,*.c :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+autocmd BufEnter *.sql :lua vim.api.nvim_buf_set_option(0, "commentstring", "-- %s")
+autocmd BufFilePost *.sql :lua vim.api.nvim_buf_set_option(0, "commentstring", "-- %s")
 augroup END
 ]]
