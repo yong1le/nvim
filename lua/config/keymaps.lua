@@ -28,6 +28,8 @@ vim.keymap.set("n", "<leader>t2", ":ToggleTerm2<cr>", {desc="ToggleTerm2", silen
 vim.keymap.set("n", "<leader>t3", ":ToggleTerm3<cr>", {desc="ToggleTerm3", silent=true})
 vim.keymap.set("n", "<leader>ta", ":ToggleTermToggleAll<cr>", {desc="ToggleTermAll", silent=true})
 
+vim.keymap.set("n", "<leader>cx", ":VimtexCompile<cr>", {desc="Compile Latex", silent=true})
+
 -- Delete Existing Keymaps
 vim.keymap.del("n", "<leader>|", {})
 vim.keymap.del("n", "<leader>-", {})

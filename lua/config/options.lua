@@ -11,3 +11,11 @@ vim.g.neovide_input_macos_alt_is_meta = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+vim.g.vimtex_view_method = "skim"
+vim.opt.conceallevel=0
+vim.diagnostic.config({
+   virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN }
+   }
+})
