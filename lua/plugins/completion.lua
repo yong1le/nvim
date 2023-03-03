@@ -17,6 +17,13 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      cmp.setup({
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+      })
+
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -41,6 +48,18 @@ return {
           end
         end, { "i", "s" }),
       })
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      local sources = {
+        null_ls.builtins.formatting.prettier.with({
+          extra_filetypes = {"javascript", "typescript", "markdown", "html", "css"}
+        }),
+      }
+      null_ls.setup({ sources = sources })
     end,
   },
 }

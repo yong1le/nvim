@@ -17,7 +17,7 @@ return {
       },
       filetype = {
         java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-        c = "cd $dir && gcc -std=c99 -Wall -Werror $fileName -o $fileNameWithoutExt.o && $dir/$fileNameWithoutExt.o",
+        c = "cd $dir && gcc -std=c99 -Wall $fileName -o $fileNameWithoutExt.o && $dir/$fileNameWithoutExt.o",
         cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt.o && $dir/$fileNameWithoutExt.o",
         python = "cd $dir && python3 $fileName",
       },

@@ -13,9 +13,11 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.g.vimtex_view_method = "skim"
-vim.opt.conceallevel=0
+vim.opt.spell = false
 vim.diagnostic.config({
-   virtual_text = {
-        severity = { min = vim.diagnostic.severity.WARN }
-   }
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN }
+  }
 })
+
+vim.opt.conceallevel = 3
