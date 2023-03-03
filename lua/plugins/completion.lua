@@ -4,6 +4,9 @@ return {
     keys = function()
       return {}
     end,
+    config = function ()
+      require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets/"})
+    end
   },
   {
     "hrsh7th/nvim-cmp",
