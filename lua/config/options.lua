@@ -34,5 +34,3 @@ vim.g.vimtex_compiler_latexmk = {
     '-interaction=nonstopmode',
   },
 }
-
-vim.g.mkdp_auto_close = false
