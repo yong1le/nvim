@@ -45,9 +45,3 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.md",
-  callback = function ()
-    vim.cmd("silent! :w | !pandoc % -o %:h/pdf/%:t:r.pdf")
-  end
-})

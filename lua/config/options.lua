@@ -12,7 +12,6 @@ vim.g.neovide_input_macos_alt_is_meta = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.g.vimtex_view_method = "skim"
 vim.opt.spell = false
 vim.diagnostic.config({
   virtual_text = {
@@ -20,4 +19,20 @@ vim.diagnostic.config({
   }
 })
 
-vim.opt.conceallevel = 3
+vim.opt.conceallevel = 0
+vim.g.vimtex_view_method = "sioyek"
+vim.g.vimtex_compiler_latexmk = {
+  build_dir = './outputs',
+  callback = 1,
+  continuous = 1,
+  executable = 'latexmk',
+  hooks = {},
+  options = {
+    '-verbose',
+    '-file-line-error',
+    '-synctex=1',
+    '-interaction=nonstopmode',
+  },
+}
+
+vim.g.mkdp_auto_close = false

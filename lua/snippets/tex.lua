@@ -35,33 +35,11 @@ local box = s("box", {
 })
 table.insert(snippets, box)
 
-local aligntext = s("aligntext", {
-  t({"\\begin{align*}", "  "}),
-  i(1, ""), t({'',''}),
-  t({"\\end{align*}"}),
-})
-table.insert(snippets, aligntext)
-
-local enumerate = s("enumerate", {
-  t({"\\begin{enumerate}", "  "}),
-  t("\\item "), i(1, ""),t({'',''}),
-  t({"\\end{enumerate*}"}),
-})
-table.insert(snippets, enumerate)
-
 local proof = s("proof", {
   t({"\\begin{proof}", "  "}),
   i(1, ""),t({'',''}),
-  t({"\\end{proof*}"}),
+  t({"\\end{proof}"}),
 })
 table.insert(snippets, proof)
-
--- md stuff
-local code = s("cd", {
-  t("```"), i(1,"lang"),
-  t({'',''}), i(2,""), t({'',''}),
-  t("```")
-})
-table.insert(snippets, code)
 
 return snippets, autosnippets

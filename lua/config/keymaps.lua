@@ -29,6 +29,7 @@ vim.keymap.set("n", "<leader>t3", ":ToggleTerm3<cr>", {desc="ToggleTerm3", silen
 vim.keymap.set("n", "<leader>ta", ":ToggleTermToggleAll<cr>", {desc="ToggleTermAll", silent=true})
 
 vim.keymap.set("n", "<leader>cx", ":VimtexCompile<cr>", {desc="Compile Latex", silent=true})
+vim.keymap.set("n", "<leader>cP", ":MarkdownPreviewToggle<cr>", {desc="Preview Markdown", silent=true})
 
 -- Delete Existing Keymaps
 vim.keymap.del("n", "<leader>|", {})

@@ -59,7 +59,7 @@ return {
       local null_ls = require("null-ls")
       local sources = {
         null_ls.builtins.formatting.prettier.with({
-          extra_filetypes = {"javascript", "typescript", "markdown", "html", "css"}
+          extra_filetypes = {"javascript", "typescript", "markdown", "html", "css", "pandoc"}
         }),
       }
       null_ls.setup({ sources = sources })
