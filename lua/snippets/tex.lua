@@ -42,4 +42,10 @@ local proof = s("proof", {
 })
 table.insert(snippets, proof)
 
+local matrix = s("matrix", {
+  t({'\\left[', '\\begin{array}{'}),
+  i(1, ""), t({'}', ''}), i(2, ''),
+  t({'', '\\end{array}', '', '\\right]'})
+})
+
 return snippets, autosnippets
