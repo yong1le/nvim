@@ -121,7 +121,6 @@ return {
 
         local dap = require('dap')
         dap.configurations.java = {}
-        print"Hello world"
 
         vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_class()<cr>",
           { buffer = bufnr, desc = "Test Class" })
