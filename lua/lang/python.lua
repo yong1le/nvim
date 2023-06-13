@@ -16,7 +16,7 @@ dap.adapters.python = function(cb, config)
   else
     cb({
       type = 'executable',
-      command = '/Users/yongle/.local/share/nvim/mason/packages/debugpy/venv/bin/python',
+      command = require('mason-registry').get_package('debugpy'):get_install_path() .. '/venv/bin/python',
       args = { '-m', 'debugpy.adapter' },
       options = {
         source_filetype = 'python',
