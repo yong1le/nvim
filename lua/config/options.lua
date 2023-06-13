@@ -1,7 +1,8 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- Setting the leader keys
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
+-- GUI related stuff
 vim.opt.guifont = "OperatorMono Nerd Font:h16"
 vim.g.neovide_background_color = "#30343c"
 vim.g.neovide_floating_blur_amount_x = 2.0
@@ -9,28 +10,56 @@ vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_input_macos_alt_is_meta = true
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-
-vim.opt.spell = false
-vim.diagnostic.config({
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.WARN }
-  }
-})
-
-vim.opt.conceallevel = 0
-vim.g.vimtex_view_method = "sioyek"
-vim.g.vimtex_compiler_latexmk = {
-  build_dir = './outputs',
-  callback = 1,
-  continuous = 1,
-  executable = 'latexmk',
-  hooks = {},
-  options = {
-    '-verbose',
-    '-file-line-error',
-    '-synctex=1',
-    '-interaction=nonstopmode',
-  },
+-- Editor options
+-- From Astrovim: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
+vim.opt.breakindent = true                                     -- Wrap indent to match line start
+vim.opt.clipboard = "unnamedplus"                              -- Connection to the system clipboard
+vim.opt.cmdheight = 1                                          -- hide command line unless needed
+vim.opt.completeopt = { "menu", "menuone", "noselect" }        -- Options for insert mode completion
+vim.opt.copyindent = false                                     -- Copy the previous indentation on autoindenting
+vim.opt.cursorline = true                                      -- Highlight the current line
+vim.opt.expandtab = true                                       -- Enable the use of space in tab
+vim.opt.fileencoding = "utf-8"                                 -- File content encoding for the buffer
+vim.opt.fillchars = { eob = " " }                              -- Disable `~` on nonexistent lines
+vim.opt.foldenable = true                                      -- enable fold for nvim-ufo
+vim.opt.foldlevel = 99                                         -- set high foldlevel for nvim-ufo
+vim.opt.foldlevelstart = 99                                    -- start with all code unfolded
+vim.opt.foldcolumn = vim.fn.has "nvim-0.9" == 1 and "1" or nil -- show foldcolumn in nvim 0.9
+vim.opt.history = 100                                          -- Number of commands to remember in a history table
+vim.opt.ignorecase = true                                      -- Case insensitive searching
+vim.opt.infercase = true                                       -- Infer cases in keyword completion
+vim.opt.laststatus = 3                                         -- globalstatus
+vim.opt.linebreak = true                                       -- Wrap lines at 'breakat'
+vim.opt.mouse = "a"                                            -- Enable mouse support
+vim.opt.number = true                                          -- Show numberline
+vim.opt.preserveindent = true                                  -- Preserve indent structure as much as possible
+vim.opt.pumheight = 10                                         -- Height of the pop up menu
+vim.opt.relativenumber = true                                  -- Show relative numberline
+vim.opt.scrolloff = 8                                          -- Number of lines to keep above and below the cursor
+vim.opt.shiftwidth = 2                                         -- Number of space inserted for indentation
+vim.opt.showmode = false                                       -- Disable showing modes in command line
+vim.opt.showtabline = 2                                        -- always display tabline
+vim.opt.sidescrolloff = 8                                      -- Number of columns to keep at the sides of the cursor
+vim.opt.signcolumn = "yes"                                     -- Always show the sign column
+vim.opt.smartcase = true                                       -- Case sensitivie searching
+vim.opt.smartindent = true                                     -- Smarter autoindentation
+vim.opt.splitbelow = true                                      -- Splitting a new window below the current one
+vim.opt.splitright = true                                      -- Splitting a new window at the right of the current one
+vim.opt.tabstop = 2                                            -- Number of space in a tab
+vim.opt.termguicolors = true                                   -- Enable 24-bit RGB color in the TUI
+vim.opt.timeoutlen = 500                                       -- Shorten key timeout length a little bit for which-key
+vim.opt.undofile = true                                        -- Enable persistent undo
+vim.opt.updatetime = 300                                       -- Length of time to wait before triggering the plugin
+vim.opt.virtualedit = "block"                                  -- allow going past end of line in visual block mode
+vim.opt.wrap = false                                           -- Disable wrapping of lines longer than the width of window
+vim.opt.writebackup = false                                    -- Disable making a backup before overwriting a file
+vim.opt.spell = false                                          -- spelling
+vim.opt.list = true                                            -- show whitespaces characters
+vim.opt.showbreak = "↪ "                                     -- show line breaks
+vim.opt.listchars = {
+  tab = "│→",
+  extends = "⟩",
+  precedes = "⟨",
+  trail = "·",
+  nbsp = "␣"
 }
