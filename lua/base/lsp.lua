@@ -28,7 +28,17 @@ return {
         map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "Rename Symbol" })
         map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Actions" })
         map('n', '<leader>lR', '<cmd>lua require("telescope.builtin").lsp_references{}<cr>', { desc = "LSP References" })
-        map('n', '<leader>li', '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>', { desc = "LSP Implementations" })
+        map('n', '<leader>li', '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>',
+          { desc = "LSP Implementations" })
+
+
+        map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue/Start" })
+        map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle Breakpoint" })
+        map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue/Start" })
+        map("n", "<leader>dv", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step Over" })
+        map("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step Into" })
+        map("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step Out" })
+        map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "Toggle UI" })
       end)
 
       -- Share options with all lsp servers
@@ -39,11 +49,6 @@ return {
         end
       })
 
-      lsp.ensure_installed({
-        'clangd',
-        'jdtls',
-      })
-
       lsp.set_sign_icons({
         error = '✘',
         warn = '▲',
@@ -51,7 +56,14 @@ return {
         info = '»'
       })
 
-      lsp.skip_server_setup()
+      lsp.ensure_installed({
+        'clangd',
+        'jdtls',
+      })
+      lsp.skip_server_setup({
+        'jdtls'
+      })
+
       lsp.setup()
     end
   },

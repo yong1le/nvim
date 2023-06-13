@@ -88,7 +88,10 @@ return {
           name = "Find",
           g = { name = "Git" }
         },
-        l = { name = "LSP" },
+        l = {
+          name = "LSP",
+          j = { name = "Java" }
+        },
         d = { name = "Debugger" },
         t = { name = "Terminal" }
       }, { prefix = '<leader>' })

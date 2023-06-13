@@ -25,7 +25,20 @@ return {
     lazy = false,
     version = false,
     config = function()
-      require('mini.surround').setup()
+      require('mini.surround').setup({
+        mappings = {
+          add = 'ys',
+          delete = 'rs',
+          find = 'fs',
+          find_left = 'fS',
+          highlight = '',
+          replace = 'cs',
+          update_n_lines = '',
+
+          suffix_last = '',
+          suffix_next = '',
+        },
+      })
     end
   },
   {

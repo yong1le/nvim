@@ -7,8 +7,11 @@ return {
       local starter = require('mini.starter')
       starter.setup({
         autoopen = true,
-        header = "Hello World",
-        footer = "Bye World"
+        evaluate_single = true,
+        footer = "Hello World",
+        items = {
+          starter.sections.telescope(),
+        }
       })
     end
   },
@@ -17,35 +20,7 @@ return {
     version = false,
     event = "BufEnter",
     config = function()
-      local statusline = require('mini.statusline')
-      local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-      local git = statusline.section_git({ trunc_width = 75 })
-      local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
-      local filename = statusline.section_filename({ trunc_width = 140 })
-      local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
-      local location = statusline.section_location({ trunc_width = 75 })
-      statusline.setup({
-        content = {
-          active = function()
-            return statusline.combine_groups({
-              { hl = mode_hl,                 strings = { mode } },
-              { hl = 'MiniStatuslineDevinfo', stings = { git, diagnostics } },
-              '%<',
-              { hl = 'MiniStatuslineFilename', strings = { filename } },
-              '%=',
-              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-              { hl = mode_hl,                  strings = { location } }
-            })
-          end,
-          inactive = function()
-            return statusline.combine_groups({
-              { hl = mode_hl, strings = { "   " } },
-              '%=',
-              { hl = mode_hl, strings = { "   " } },
-            })
-          end
-        }
-      })
+      require('mini.statusline').setup()
     end
   },
   {
