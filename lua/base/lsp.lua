@@ -65,16 +65,11 @@ return {
       })
 
       lsp.setup()
-    end
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'onsails/lspkind.nvim'
-    },
-    config = function()
+
+      -- CMP settings
       local cmp = require('cmp')
       local cmp_action = require('lsp-zero').cmp_action()
+      local lspkind = require('lspkind')
       cmp.setup({
         preselect = 'item',
         completion = {
@@ -82,7 +77,7 @@ return {
         },
         formatting = {
           fields = { 'abbr', 'kind', 'menu' },
-          format = require('lspkind').cmp_format({
+          format = lspkind.cmp_format({
             mode = 'symbol',
             maxwidth = 50,
             ellipsis_char = '...',
@@ -106,6 +101,14 @@ return {
         },
       })
     end
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'onsails/lspkind.nvim',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+    },
   },
   {
     'williamboman/mason.nvim',

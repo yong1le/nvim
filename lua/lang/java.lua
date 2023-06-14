@@ -7,11 +7,11 @@ return {
       local cache_vars = {}
 
       local root_files = {
-        '.git',
         'mvnw',
         'gradlew',
         'pom.xml',
         'build.gradle',
+        '.project'
       }
 
       local features = {
@@ -57,9 +57,9 @@ return {
           '\n'
         )
 
-        if java_test_bundle[1] ~= '' then
-          vim.list_extend(path.bundles, java_test_bundle)
-        end
+        -- if java_test_bundle[1] ~= '' then
+        vim.list_extend(path.bundles, java_test_bundle)
+        -- end
 
         ---
         -- Include java-debug-adapter bundle if present
@@ -117,10 +117,15 @@ return {
 
       local function enable_debugger(bufnr)
         require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-        require('jdtls.dap').setup_dap_main_class_configs()
-
+        -- require('jdtls.dap').setup_dap_main_class_configs()
         local dap = require('dap')
-        dap.configurations.java = {}
+        dap.configurations.java = {
+          {
+            javaExec = "/opt/homebrew/opt/openjdk/bin/java",
+            request = 'launch',
+            type = 'java'
+          }
+        }
 
         vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_class()<cr>",
           { buffer = bufnr, desc = "Test Class" })
@@ -156,6 +161,7 @@ return {
 
       local function jdtls_setup(event)
         local jdtls = require('jdtls')
+        jdtls.setup.add_commands()
 
         local path = get_jdtls_paths()
         local data_dir = path.data_dir .. '/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -223,7 +229,12 @@ return {
             },
             format = {
               enabled = true,
-            }
+            },
+            -- project = {
+            --   referencedLibraries = {
+            --     '/Users/yongle/java/junit-platform-console-standalone-1.10.0-M1.jar'
+            --   }
+            -- }
           },
           signatureHelp = {
             enabled = true,
