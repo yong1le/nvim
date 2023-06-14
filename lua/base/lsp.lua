@@ -57,12 +57,12 @@ return {
       })
 
       lsp.ensure_installed({
-        'clangd',
-        'jdtls',
+        -- 'clangd',
+        -- 'jdtls',
       })
-      lsp.skip_server_setup({
-        'jdtls'
-      })
+      -- lsp.skip_server_setup({
+      --   'jdtls'
+      -- })
 
       lsp.setup()
 
