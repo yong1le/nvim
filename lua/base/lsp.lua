@@ -60,9 +60,9 @@ return {
         -- 'clangd',
         -- 'jdtls',
       })
-      -- lsp.skip_server_setup({
-      --   'jdtls'
-      -- })
+      lsp.skip_server_setup({
+        'jdtls'
+      })
 
       lsp.setup()
 
