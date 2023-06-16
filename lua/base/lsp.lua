@@ -10,6 +10,10 @@ return {
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'L3MON4D3/LuaSnip' },
+      { 'onsails/lspkind.nvim' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
     },
     config = function(plugin, opts)
       local lsp = require('lsp-zero').preset({
@@ -92,6 +96,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'buffer',  keyword_length = 3 },
           { name = 'luasnip', keyword_length = 2 },
+          { name = 'nvim_lua' },
         },
         mapping = {
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -101,14 +106,6 @@ return {
         },
       })
     end
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'onsails/lspkind.nvim',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
-    },
   },
   {
     'williamboman/mason.nvim',

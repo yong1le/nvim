@@ -1,0 +1,98 @@
+{
+  "matrix": {
+    "prefix": "mt",
+    "body": ["\\left[\\begin{array}{$1}", "\t$0", "\\end{array}\\right]"]
+  },
+  "align": {
+    "prefix": "ag",
+    "body": ["\\begin{align*}", "\t$0", "\\end{align*}"]
+  },
+  "fraction": {
+    "prefix": "/",
+    "body": "\\frac{$1}{$2}$0"
+  },
+  "sigma": {
+    "prefix": "si",
+    "body": "\\sum\\limits_{${1:i=1}}^{${2:n}}$0"
+  },
+  "series": {
+    "prefix": "is",
+    "body": "\\sum\\limits_{${1:n=1}}^{${2:\\infty}}$0"
+  },
+  "limit": {
+    "prefix": "li",
+    "body": "\\lim\\limits_{${1:x} ${2:\\to\\infty}}$0"
+  },
+  "integrals": {
+    "prefix": "it",
+    "body": "\\int_{$1}^{$2}{$3}${0:dx}"
+  },
+  "absolute": {
+    "prefix": "abs",
+    "body": "\\left|{$1}\\right|"
+  },
+  "Ratio Test": {
+    "prefix": "rt",
+    "body": "\\lim_{n\\to\\infty}\\left| \\frac{$1}{$2} \\right|"
+  },
+  "Improper Integrals A": {
+    "prefix": "ima",
+    "body": "\\lim_{A\\to\\infty}\\int_{A}^{$1}$2${0:dx}"
+  },
+  "Improper Integrals B": {
+    "prefix": "imb",
+    "body": "\\lim_{B\\to\\infty}\\int_{$1}^{B}$2${0:dx}"
+  },
+  "Math Font": {
+    "prefix": "mb",
+    "body": "\\mathbb{${1:R}}"
+  },
+  "Vector": {
+    "prefix": "v",
+    "body": "\\vec{${1:v}}"
+  },
+  "Linear Dependence": {
+    "prefix": "ld",
+    "body": "a_1v_1 + \\dots a_nv_n = \\vec{0}"
+  },
+  "Open Interval": {
+    "prefix": "oi",
+    "body": "($1, $2)"
+  },
+  "Closed-Open Interval": {
+    "prefix": "coi",
+    "body": "[$1, $2)"
+  },
+  "Open-Closed Interval": {
+    "prefix": "oci",
+    "body": "($1, $2]"
+  },
+  "Closed Interval": {
+    "prefix": "ci",
+    "body": "[$1, $2]"
+  },
+  "Set": {
+    "prefix": "s",
+    "body": "\\{$1\\\\}"
+  },
+  "Box": {
+    "prefix": "sol",
+    "body": ["\\begin{mdframed}", "\t$1", "\\end{mdframed}"]
+  },
+  "display math": {
+    "prefix": "dm",
+    "body": ["$$", "\t$1", "$$"]
+  },
+  "inline math": {
+    "prefix": "im",
+    "body": "$$1$"
+  },
+  "inline code": {
+    "prefix": "ic",
+    "body": "\\mintinline{$1}{$2}"
+  },
+  "display code": {
+    "prefix": "dc",
+    "body": ["\\begin{minted}{$1}", "\t$2", "\\end{minted}"]
+  }
+}
