@@ -27,12 +27,12 @@ return {
     config = function()
       require('mini.surround').setup({
         mappings = {
-          add = 'ys',
-          delete = 'rs',
-          find = 'fs',
-          find_left = 'fS',
-          highlight = '',
-          replace = 'cs',
+          add = 'wa',
+          delete = 'wd',
+          find = 'wf',
+          find_left = 'wF',
+          highlight = 'wh',
+          replace = 'wc',
           update_n_lines = '',
 
           suffix_last = '',

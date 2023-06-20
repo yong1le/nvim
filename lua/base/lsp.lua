@@ -14,6 +14,7 @@ return {
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'jose-elias-alvarez/null-ls.nvim' },
     },
     config = function(plugin, opts)
       local lsp = require('lsp-zero').preset({
@@ -104,6 +105,26 @@ return {
           ['<S-tab>'] = cmp_action.luasnip_shift_supertab(),
           ['<C-o>'] = cmp.mapping.complete(),
         },
+      })
+
+      lsp.format_mapping('<leader>lf', {
+        format_opts = {
+          async = false,
+          timeout_ms = 10000,
+        },
+        servers = {
+          ['null-ls'] = { 'javascript', 'typescript', 'markdown' },
+        }
+      })
+
+      lsp.setup()
+
+      local null_ls = require('null-ls')
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.prettier,
+        }
       })
     end
   },
