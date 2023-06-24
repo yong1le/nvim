@@ -99,4 +99,19 @@ return {
       "tpope/vim-repeat",
     },
   },
+  {
+    "RRethy/vim-illuminate",
+    event = {"BufReadPre", "BufNewFile", "BufNewFile"},
+    config = function ()
+      require("illuminate").configure({
+        filetypes_denylist = {
+          "neo-tree",
+          "toggleterm",
+          "terminal",
+          "lazy",
+          "mason",
+        }
+      })
+    end
+  }
 }
