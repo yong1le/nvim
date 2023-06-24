@@ -16,19 +16,24 @@ return {
         close_if_last_window = true,
         popup_border_style = 'rounded',
         enable_git_status = true,
-        open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
-        git_status = {
-          symbols = {
-            added     = "",
-            modified  = "",
-            deleted   = "✖",
-            renamed   = "",
-            untracked = "",
-            ignored   = "",
-            unstaged  = "",
-            staged    = "",
-            conflict  = "",
-          }
+        open_files_do_not_replace_types = { "terminal", "trouble", "qf", "toggleterm" },
+        default_component_configs = {
+          git_status = {
+            symbols = {
+              renamed = "󰁕",
+              unstaged = "󰄱",
+            }
+          },
+          icon = {
+            folder_empty = "󰜌",
+            folder_empty_open = "󰜌",
+          },
+          indent = {
+            with_expanders = true,
+            expander_collapsed = "",
+            expander_expanded = "",
+            expander_highlight = "NeoTreeExpander",
+          },
         },
         window = {
           position = 'left',
