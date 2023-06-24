@@ -97,4 +97,8 @@ return {
       }, { prefix = '<leader>' })
     end,
   },
+  {
+    'kevinhwang91/nvim-bqf',
+    ft = 'qf'
+  },
 }
