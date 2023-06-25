@@ -66,7 +66,7 @@ return {
         -- 'jdtls',
       })
       lsp.skip_server_setup({
-        'jdtls'
+        'jdtls', 'zk'
       })
 
       lsp.setup()
@@ -101,8 +101,8 @@ return {
         },
         mapping = {
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
-          ['<tab>'] = cmp_action.luasnip_supertab(),
-          ['<S-tab>'] = cmp_action.luasnip_shift_supertab(),
+          -- ['<tab>'] = cmp_action.luasnip_supertab(),
+          -- ['<S-tab>'] = cmp_action.luasnip_shift_supertab(),
           ['<C-o>'] = cmp.mapping.complete(),
         },
       })

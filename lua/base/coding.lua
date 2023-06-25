@@ -110,6 +110,8 @@ return {
           "terminal",
           "lazy",
           "mason",
+          "help",
+          "markdown"
         }
       })
     end

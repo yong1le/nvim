@@ -98,7 +98,8 @@ return {
           j = { name = "Java" }
         },
         d = { name = "Debugger" },
-        t = { name = "Terminal" }
+        t = { name = "Terminal" },
+        z = { name = "Notes" },
       }, { prefix = '<leader>' })
     end,
   },
