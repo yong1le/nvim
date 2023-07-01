@@ -54,6 +54,7 @@ vim.opt.virtualedit = "block"                                  -- allow going pa
 vim.opt.wrap = false                                           -- Disable wrapping of lines longer than the width of window
 vim.opt.writebackup = false                                    -- Disable making a backup before overwriting a file
 vim.opt.spell = false                                          -- spelling
+vim.opt.colorcolumn = "79"
 vim.opt.list = true                                            -- show whitespaces characters
 vim.opt.showbreak = "↪ "                                     -- show line breaks
 vim.opt.listchars = {
