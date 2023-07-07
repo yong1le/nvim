@@ -51,4 +51,10 @@ return {
     'kevinhwang91/nvim-bqf',
     ft = 'qf'
   },
+  {
+    "famiu/bufdelete.nvim",
+    keys = {
+      {"<leader>bd", "<cmd>Bdelete<cr>", desc = "Delete Buffer"}
+    }
+  }
 }

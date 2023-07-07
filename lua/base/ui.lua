@@ -7,19 +7,21 @@ return {
     end,
   },
   {
-    'echasnovski/mini.statusline',
-    version = false,
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     event = "BufEnter",
     config = function()
-      require('mini.statusline').setup()
+      require('base.config.lualine')
     end
   },
   {
-    'echasnovski/mini.tabline',
-    version = false,
+    'akinsho/bufferline.nvim',
+    version = "*",
     event = "BufEnter",
     config = function()
-      require('mini.tabline').setup()
+      require('base.config.bufferline')
     end
   },
   {
@@ -50,4 +52,11 @@ return {
     event = 'BufEnter',
     opts = {},
   },
+  {
+    'lukas-reineke/virt-column.nvim',
+    event = "BufEnter",
+    config = function ()
+      require('virt-column').setup()
+    end
+  }
 }

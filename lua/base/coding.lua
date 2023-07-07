@@ -56,7 +56,6 @@ return {
     keys = {
       { '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>',        desc = 'Horizontal Terminal' },
       { '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>',          desc = 'Vertical Terminal' },
-      { '<leader>tf', '<cmd>ToggleTerm direction=float<cr>',             desc = 'Floating Terminal' },
       { '<leader>tl', '<cmd>TermExec cmd="lazygit" direction=float<cr>', desc = 'Lazygit' },
     },
     config = function()
@@ -101,8 +100,8 @@ return {
   },
   {
     "RRethy/vim-illuminate",
-    event = {"BufReadPre", "BufNewFile", "BufNewFile"},
-    config = function ()
+    event = { "BufReadPre", "BufNewFile", "BufNewFile" },
+    config = function()
       require("illuminate").configure({
         filetypes_denylist = {
           "neo-tree",
@@ -115,5 +114,21 @@ return {
         }
       })
     end
-  }
+  },
+  {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {"LazyGit"},
+    keys = {
+      {"<leader>tl", "<cmd>LazyGit<cr>", desc = "Lazy Git" },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 }
