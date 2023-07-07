@@ -54,9 +54,9 @@ return {
     version = '*',
     cmd = { 'ToggleTerm' },
     keys = {
-      { '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>',        desc = 'Horizontal Terminal' },
-      { '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>',          desc = 'Vertical Terminal' },
-      { '<leader>tf', '<cmd>ToggleTerm direction=float<cr>',             desc = 'Floating Terminal' },
+      { '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>', desc = 'Horizontal Terminal' },
+      { '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>',   desc = 'Vertical Terminal' },
+      { '<leader>tf', '<cmd>ToggleTerm direction=float<cr>',      desc = 'Floating Terminal' },
     },
     config = function()
       require('toggleterm').setup({
@@ -118,14 +118,19 @@ return {
   {
     "max397574/better-escape.nvim",
     config = function()
-      require("better_escape").setup()
+      require("better_escape").setup({
+        mapping = { "jk"},
+        timeout = vim.o.timeoutlen,
+        clear_empty_lines = false,
+        keys = "<Esc>"
+      })
     end,
   },
   {
     "kdheepak/lazygit.nvim",
-    cmd = {"LazyGit"},
+    cmd = { "LazyGit" },
     keys = {
-      {"<leader>tl", "<cmd>LazyGit<cr>", desc = "Lazy Git" },
+      { "<leader>tl", "<cmd>LazyGit<cr>", desc = "Lazy Git" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
