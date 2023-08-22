@@ -1,6 +1,5 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.1',
   dependencies = { 'nvim-lua/plenary.nvim' },
   cmd = { 'Telescope' },
   keys = {
@@ -14,22 +13,13 @@ return {
     { "<leader>fgb", "<cmd>lua require('telescope.builtin').git_branches{}<cr>", desc = "Git Branches" },
   },
   config = function()
+    local themes = require "telescope.themes"
     require 'telescope'.setup({
-      defaults = {
-        sorting_strategy = "ascending",
-        layout_strategy = "center",
-        layout_config = {
-          preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-
-          width = function(_, max_columns, _)
-            return math.min(max_columns, 80)
-          end,
-
-          height = function(_, _, max_lines)
-            return math.min(max_lines, 15)
-          end,
-        },
-      }
+    defaults = themes.get_ivy {
+      layout_config = {
+        preview_cutoff = 1, -- Always show previewer
+      },
+    },
     })
   end
 }

@@ -1,10 +1,10 @@
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    cmd = { 'Neotree', 'NeoTreeRevealToggle' },
+    branch = 'v3.x',
+    cmd = { 'Neotree' },
     keys = {
-      { '<leader>e', '<cmd>NeoTreeRevealToggle<cr>', desc = 'Tree Explorer' }
+      { '<leader>e', '<cmd>Neotree toggle<cr>', desc = 'Tree Explorer' }
     },
     dependencies = {
       'nvim-lua/plenary.nvim',
