@@ -1,6 +1,6 @@
 -- Setting the leader keys
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = ','
 
 -- GUI related stuff
 vim.opt.guifont = "OperatorMono Nerd Font:h16"
@@ -9,6 +9,7 @@ vim.g.neovide_floating_blur_amount_x = 2.0
 vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_input_macos_alt_is_meta = true
+vim.g.colors_name = "catppuccin"
 
 -- Editor options
 -- From Astrovim: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
@@ -20,11 +21,11 @@ vim.opt.copyindent = false                                     -- Copy the previ
 vim.opt.cursorline = true                                      -- Highlight the current line
 vim.opt.expandtab = true                                       -- Enable the use of space in tab
 vim.opt.fileencoding = "utf-8"                                 -- File content encoding for the buffer
-vim.opt.fillchars = { eob = " " }                              -- Disable `~` on nonexistent lines
+vim.opt.fillchars = {eob =  " ",fold = " " ,foldopen = "", foldsep = " ", foldclose = ""}
 vim.opt.foldenable = true                                      -- enable fold for nvim-ufo
 vim.opt.foldlevel = 99                                         -- set high foldlevel for nvim-ufo
 vim.opt.foldlevelstart = 99                                    -- start with all code unfolded
-vim.opt.foldcolumn = vim.fn.has "nvim-0.9" == 1 and "1" or nil -- show foldcolumn in nvim 0.9
+vim.opt.foldcolumn = "1"                                         -- show foldcolumn in nvim 0.9
 vim.opt.history = 100                                          -- Number of commands to remember in a history table
 vim.opt.ignorecase = true                                      -- Case insensitive searching
 vim.opt.infercase = true                                       -- Infer cases in keyword completion
@@ -47,7 +48,7 @@ vim.opt.splitbelow = true                                      -- Splitting a ne
 vim.opt.splitright = true                                      -- Splitting a new window at the right of the current one
 vim.opt.tabstop = 2                                            -- Number of space in a tab
 vim.opt.termguicolors = true                                   -- Enable 24-bit RGB color in the TUI
-vim.opt.timeoutlen = 500                                       -- Shorten key timeout length a little bit for which-key
+vim.opt.timeoutlen = 300                                       -- Shorten key timeout length a little bit for which-key
 vim.opt.undofile = true                                        -- Enable persistent undo
 vim.opt.updatetime = 300                                       -- Length of time to wait before triggering the plugin
 vim.opt.virtualedit = "block"                                  -- allow going past end of line in visual block mode

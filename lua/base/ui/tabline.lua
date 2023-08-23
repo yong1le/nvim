@@ -1,10 +1,15 @@
-local bufferline = require('bufferline')
-
-bufferline.setup {
+return {
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    event = "BufEnter",
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    opts = {
 
   options = {
     mode = "buffers",                               -- set to "tabs" to only show tabpages instead
-    style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
     themable = true,                        -- allows highlight groups to be overriden i.e. sets highlights as default
     numbers = "none",
     close_command = "Bdelete! %d",
@@ -89,7 +94,7 @@ bufferline.setup {
     -- [focused and unfocused]. eg: { '|', '|' }
     separator_style = "thin",
     enforce_regular_tabs = false,
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     hover = {
       enabled = false,
       delay = 200,
@@ -101,4 +106,9 @@ bufferline.setup {
       return buffer_a.modified > buffer_b.modified
     end
   }
+},
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+    end
+  },
 }
