@@ -25,7 +25,7 @@ return {
     },
     opts = {
       ensure_installed = {}, -- extend in individual language configs
-      auto_install = true,
+      auto_install = false,
       autotag = {
         enable = true,
         enable_close_on_slash = false,

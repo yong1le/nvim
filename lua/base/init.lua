@@ -13,8 +13,8 @@ return {
   { import = "base.git"},
 
   -- Packages needed to setup lsp
-  -- { import = "base.lsp" },
+  { import = "base.lsp" },
 
   -- Individual lsp configurations for each language
-  -- { import = "base.lang" },
+  { import = "base.lang" },
 }
