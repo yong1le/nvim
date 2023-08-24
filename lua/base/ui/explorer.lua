@@ -9,7 +9,7 @@ return {
     },
     cmd = "Neotree",
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "Toggle Explorer", mode = {"n", "v"}}
+      { "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "Toggle Explorer", mode = { "n", "v" } }
     },
     opts = {
       close_if_last_window = true,
@@ -75,6 +75,9 @@ return {
           [">"] = "next_source",
         },
       },
+      filesystem = {
+        follow_current_file = { enabled = true, leave_dirs_open = true },
+      }
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)

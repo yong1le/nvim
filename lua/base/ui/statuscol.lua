@@ -7,13 +7,12 @@ return {
 
       relculright = true,
       segments = {
-        -- numbercol
-        {text = {require("statuscol.builtin").lnumfunc, " "}, click = "v:lua.ScLa"},
         -- Gitsigns
         {text = {"%s"}, click = "v:lua.ScSa"},
         -- Foldcol
         {text = {require("statuscol.builtin").foldfunc}, click = "v:lua.ScFa"},
-        {text = {"│"}},
+        -- numbercol
+        {text = {require("statuscol.builtin").lnumfunc, " "}, click = "v:lua.ScLa"},
       }
     },
     config = function(_, opts)
