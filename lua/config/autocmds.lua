@@ -4,17 +4,9 @@ local augroup = vim.api.nvim_create_augroup
 -- Highlight yank
 autocmd("TextYankPost", {
   desc = "Highlight yanked text",
-  group = augroup("highlightyank", { clear = true }),
+  group = augroup("Highlight Yank", { clear = true }),
   pattern = "*",
   callback = function() vim.highlight.on_yank() end,
 })
 
--- disable indent guides on certain buffer types
-autocmd("FileType", {
-  pattern = { "neo-tree", "toggleterm", "alpha", "Trouble", "dashboard", "lazy", "mason", "help"},
-  callback = function ()
-    vim.b.miniindentscope_disable = true
-  end
-
-})
 
