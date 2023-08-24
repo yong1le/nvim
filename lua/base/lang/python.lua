@@ -14,17 +14,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts["pyright"] = {
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              diagnosticMode = "workspace",
-              useLibraryCodeForTypes = true
-            }
-          }
-        }
-      }
+      opts["pyright"] = {}
     end
   }
 }

@@ -14,9 +14,11 @@ return {
     end
   },
   {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts["tsserver"] = {}
-    end
-  }
+    "pmizio/typescript-tools.nvim",
+    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      cmd = { "typescript-language-server", "--stdio" },
+    },
+  },
 }
