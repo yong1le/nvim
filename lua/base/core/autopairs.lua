@@ -22,4 +22,10 @@ return {
       require("nvim-autopairs").setup(opts)
     end,
   },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  }
 }

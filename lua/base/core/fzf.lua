@@ -30,6 +30,8 @@ return {
             i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
+              ["<Tab>"] = actions.move_selection_next,
+              ["<S-Tab>"] = actions.move_selection_previous,
             }
           }
         }),

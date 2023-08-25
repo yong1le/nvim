@@ -8,7 +8,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
     },
     opts = function()
       local cmp = require("cmp")
@@ -60,8 +59,7 @@ return {
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip",  priority = 750 },
           { name = "buffer",   priority = 500 },
-          { name = "cmdline",  priority = 250 },
-          { name = "path",     priority = 100 },
+          { name = "path",     priority = 250 },
         }),
         formatting = {
           format = kind.cmp_format({
