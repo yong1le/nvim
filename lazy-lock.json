@@ -15,7 +15,6 @@
   "gitsigns.nvim": { "branch": "main", "commit": "749267aaa863c30d721c9913699c5d94e0c07dd3" },
   "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
   "lazygit.nvim": { "branch": "main", "commit": "22e51e03268fabe068a77e2bd316ac25ff2084f9" },
-  "lsp-status.nvim": { "branch": "master", "commit": "54f48eb5017632d81d0fd40112065f1d062d0629" },
   "lspkind.nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "2997f467881ac4faa6f8c5e7065e3a672297c8ad" },
