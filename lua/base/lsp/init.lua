@@ -4,6 +4,7 @@ return {
     event = "BufEnter",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     keys = {
       { "<leader>l", desc = "+LSP" },
