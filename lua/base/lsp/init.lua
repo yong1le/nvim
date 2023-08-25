@@ -1,88 +1,77 @@
 return {
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    event = { 'BufReadPre', 'BufNewFile' },
+    "neovim/nvim-lspconfig",
+    event = "BufEnter",
     dependencies = {
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-      { 'L3MON4D3/LuaSnip' },
-      { "jay-babu/mason-null-ls.nvim" },
-      { 'jose-elias-alvarez/null-ls.nvim' },
-      -- cmp
-      { "hrsh7th/nvim-cmp" },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'onsails/lspkind.nvim' },
+      "williamboman/mason-lspconfig.nvim",
     },
-    config = function()
-      local lsp = require('lsp-zero').preset({
-        name = "recommended"
-      })
-      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    keys = {
+      { "<leader>l", desc = "+LSP" },
+    },
+    config = function(_, opts)
+      -- Setup all servers
+      for server, conf in pairs(opts) do
+        require("lspconfig")[server].setup(conf)
+      end
 
-      -- enable default keymaps
-      lsp.on_attach(function(client, bufnr)
-        lsp.default_keymaps({
-          buffer = bufnr,
-        })
-
-        -- Keybindings here
-        local map = vim.keymap.set
-        map('n', '<leader>lf', '<cmd>LspZeroFormat<cr>', { desc = "Format Buffer" })
-        map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "Rename Symbol" })
-        map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Actions" })
-        map('n', '<leader>lR', '<cmd>lua require("telescope.builtin").lsp_references{}<cr>', { desc = "LSP References" })
-        map('n', '<leader>li', '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>',
-          { desc = "LSP Implementations" })
-
-
-        map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue/Start" })
-        map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle Breakpoint" })
-        map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue/Start" })
-        map("n", "<leader>dv", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step Over" })
-        map("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step Into" })
-        map("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step Out" })
-        map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "Toggle UI" })
-      end)
-
-      -- Share options with all lsp servers
-      lsp.set_server_config({
-        single_file_support = true,
-        on_init = function(c)
-          c.server_capabilities.semanticTokensProvider = nil
-        end
+      -- Diagnostics
+      vim.diagnostic.config({
+        virtual_text = false,
+        signs = true,
+        underline = true,
       })
 
-      lsp.set_sign_icons({
-        error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = '»'
+      -- Gutter Icons
+      local signs = { Error = "✘ ", Warn = "▲ ", Hint = "⚑ ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
+      -- Borders
+      local border = {
+        { "╭", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╮", "FloatBorder" },
+        { "│", "FloatBorder" },
+        { "╯", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╰", "FloatBorder" },
+        { "│", "FloatBorder" },
+      }
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or border
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
+
+      -- Keybinds
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          local map = vim.keymap.set
+          local opt = function(desc)
+            return { buffer = ev.buf, desc = desc }
+          end
+
+          map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt("Hover Documentation"))
+          map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt("Go to Definition"))
+          map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt("Go to Declaration"))
+          map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opt("Go to Implementation"))
+          -- map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts("Hover Signature"))
+          map("n", "gr", "<cmd> lua vim.lsp.buf.references()<cr>", opt("Go to References"))
+          map("n", "gl", "<cmd> lua vim.diagnostic.open_float(nil, {focus = false})<cr>", opt("Show Line Diagnostics"))
+
+          map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', { desc = "Format Buffer" })
+          map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "Rename Symbol" })
+          map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Actions" })
+          map('n', '<leader>lR', '<cmd>lua require("telescope.builtin").lsp_references{}<cr>',
+            { desc = "LSP References" })
+          map('n', '<leader>li', '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>',
+            { desc = "LSP Implementations" })
+        end,
       })
-
-      lsp.skip_server_setup({
-        'zk',
-        'jdtls'
-      })
-
-      lsp.setup()
-
-      require('base.lsp.completion')
-      require('base.lsp.format')
     end
   },
-  {
-    'williamboman/mason.nvim',
-    config = function()
-      require('mason').setup({
-        ui = {
-          border = 'single',
-        }
-      })
-    end
-  }
 }
