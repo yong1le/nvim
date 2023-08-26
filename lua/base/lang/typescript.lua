@@ -1,21 +1,22 @@
+local utils = require "utils"
+
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) table.insert(opts.ensure_installed, "tsserver") end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "tsserver" })
+    end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, "prettierd")
-      table.insert(opts.ensure_installed, "eslint_d")
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "prettierd", "eslint_d" })
     end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, "typescript")
-      table.insert(opts.ensure_installed, "javascript")
-      table.insert(opts.ensure_installed, "tsx")
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "javascript", "typescript", "tsx" })
     end,
   },
   {
@@ -24,19 +25,23 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
       cmd = { "typescript-language-server", "--stdio" },
-      tsserver_format_options = false
+      tsserver_format_options = false,
     },
   },
   {
     "creativenull/efmls-configs-nvim",
     opts = function(_, opts)
       local prettierd = require "efmls-configs.formatters.prettier_d"
-      local eslint_d = require "efmls-configs.formatters.eslint_d"
+      local eslint_d = require "efmls-configs.linters.eslint_d"
+      for i,v in pairs(eslint_d) do
+        print(i, v)
+      end
 
       local languages = { "typescript", "javascript", "typescriptreact", "javascriptreact", "tsx", "jsx" }
+
+      opts.filetypes = utils.insert_unique(opts.filetypes, languages)
       for _, l in ipairs(languages) do
-        table.insert(opts.filetypes, l)
-        opts.settings.languages[l] = { prettierd, eslint_d }
+        opts.settings.languages[l] = utils.insert_unique(opts.settings.languages[l], { prettierd, eslint_d })
       end
     end,
   },

@@ -1,27 +1,32 @@
+local utils = require "utils"
+
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) table.insert(opts.ensure_installed, "clangd") end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "clangd" })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, "cpp")
-      table.insert(opts.ensure_installed, "c")
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "c", "cpp" })
     end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts) table.insert(opts.ensure_installed, "clang-format") end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "clang-format" })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts["clangd"] = {
+      opts.clangd = utils.merge(opts.clangd, {
         capabilities = {
           offsetEncoding = "utf-8",
         },
-      }
+      })
     end,
   },
   {
@@ -30,9 +35,9 @@ return {
       local clang_format = require "efmls-configs.formatters.clang_format"
 
       local languages = { "c", "cpp" }
+      opts.filetypes = utils.insert_unique(opts.filetypes, languages)
       for _, l in ipairs(languages) do
-        table.insert(opts.filetypes, l)
-        opts.settings.languages[l] = { clang_format }
+        opts.settings.languages[l] = utils.insert_unique(opts.settings.languages[l], { clang_format })
       end
     end,
   },

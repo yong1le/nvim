@@ -1,4 +1,13 @@
+local utils = require "utils"
 return {
+
+  {
+    "folke/neodev.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+    opts = {},
+  },
   {
     "neovim/nvim-lspconfig",
     event = "BufEnter",
@@ -8,19 +17,25 @@ return {
     },
     keys = {
       { "<leader>l", desc = "+LSP" },
+      { "<leader>l,", "<cmd>LspStart<cr>", desc = "Start LSP Servers" },
     },
     config = function(_, opts)
       -- Setup all servers
       for server, conf in pairs(opts) do
+        -- global options
+        conf = utils.merge(conf, {})
         require("lspconfig")[server].setup(conf)
       end
 
       -- Diagnostics
-      vim.diagnostic.config({
+      vim.diagnostic.config {
         virtual_text = false,
         signs = true,
         underline = true,
-      })
+        float = {
+          source = true,
+        },
+      }
 
       -- Gutter Icons
       local signs = { Error = "✘ ", Warn = "▲ ", Hint = "⚑ ", Info = " " }
@@ -56,23 +71,31 @@ return {
             return { buffer = ev.buf, desc = desc }
           end
 
-          map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt("Hover Documentation"))
-          map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt("Go to Definition"))
-          map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt("Go to Declaration"))
-          map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opt("Go to Implementation"))
+          map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt "Hover Documentation")
+          map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt "Go to Definition")
+          map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt "Go to Declaration")
+          map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opt "Go to Implementation")
           -- map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts("Hover Signature"))
-          map("n", "gr", "<cmd> lua vim.lsp.buf.references()<cr>", opt("Go to References"))
-          map("n", "gl", "<cmd> lua vim.diagnostic.open_float(nil, {focus = false})<cr>", opt("Show Line Diagnostics"))
+          map("n", "gr", "<cmd> lua vim.lsp.buf.references()<cr>", opt "Go to References")
+          map("n", "gl", "<cmd> lua vim.diagnostic.open_float()<cr>", opt "Show Line Diagnostics")
 
-          map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', { desc = "Format Buffer" })
-          map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "Rename Symbol" })
-          map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Actions" })
-          map('n', '<leader>lR', '<cmd>lua require("telescope.builtin").lsp_references{}<cr>',
-            { desc = "LSP References" })
-          map('n', '<leader>li', '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>',
-            { desc = "LSP Implementations" })
+          map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>", { desc = "Format Buffer" })
+          map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename Symbol" })
+          map("n", "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Actions" })
+          map(
+            "n",
+            "<leader>lR",
+            '<cmd>lua require("telescope.builtin").lsp_references{}<cr>',
+            { desc = "LSP References" }
+          )
+          map(
+            "n",
+            "<leader>li",
+            '<cmd>lua require("telescope.builtin").lsp_implementations{}<cr>',
+            { desc = "LSP Implementations" }
+          )
         end,
       })
-    end
+    end,
   },
 }

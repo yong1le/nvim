@@ -54,7 +54,6 @@ return {
           statusline = {},
           winbar = {},
         },
-        ignore_focus = { "neo-tree", "toggleterm", "alpha", "Trouble", "dashboard", "lazy", "mason", "help" },
         globalstatus = true
       },
       sections = {
