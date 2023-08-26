@@ -27,3 +27,6 @@
     - [Typescript Tools](https://github.com/pmizio/typescript-tools.nvim)
     - prettierd
     - eslintd
+- HTML/CSS
+    - tailwindcss
+    - emmet-language-server
