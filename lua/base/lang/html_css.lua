@@ -23,7 +23,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts.html = utils.merge(opts.html, {})
+      opts.html = utils.merge(opts.html, {
+        init_options = {
+          provideFormatter = false,
+        },
+      })
       opts.cssls = utils.merge(opts.cssls, {})
       opts.tailwindcss = utils.merge(opts.tailwindcss, {})
       opts.emmet_language_server = utils.merge(opts.emmet_language_server, {
