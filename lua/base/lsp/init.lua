@@ -1,11 +1,7 @@
 local utils = require "utils"
 return {
-
   {
     "folke/neodev.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
     opts = {},
   },
   {
@@ -14,6 +10,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "folke/neodev.nvim",
     },
     keys = {
       { "<leader>l", desc = "+LSP" },
