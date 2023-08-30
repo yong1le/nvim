@@ -1,18 +1,32 @@
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
   },
   event = "BufEnter",
   opts = function()
     -- Getting attached lsp clients
     local get_clients = function()
-      local clients = vim.lsp.buf_get_clients()
+      local clients = vim.lsp.get_active_clients()
+      local ft = vim.api.nvim_buf_get_option(0, "filetype")
+
+      -- If no clients are attached
+      if next(clients) == nil then
+        return "No Active LSP"
+      end
+
       local lsp_string = ""
-      for i, client in ipairs(clients) do
+      local i = 1 -- Current count of attached clients
+      for _, client in ipairs(clients) do
+        local client_ft = client.config.filetypes
+
+        if client_ft and not vim.tbl_contains(client_ft, ft) then
+          goto continue
+        end
+
         -- Don't show full if too much clients
         if i >= 3 then
-          lsp_string = lsp_string .. ""
+          lsp_string = lsp_string .. " "
           break
         end
         if i == 1 then
@@ -20,6 +34,9 @@ return {
         else
           lsp_string = lsp_string .. ", " .. client.name
         end
+        i = i + 1;
+
+        ::continue::
       end
       return lsp_string
     end
@@ -41,60 +58,61 @@ return {
       MORE = "",
       CONFIRM = "",
       SHELL = "",
-      TERMINAL = ""
+      TERMINAL = "",
     }
 
     return {
       options = {
         icons_enabled = true,
         theme = "catppuccin",
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
         },
-        globalstatus = true
+        globalstatus = true,
       },
       sections = {
         lualine_a = {
           {
-            'mode',
+            "mode",
             fmt = function(str)
               return mode_icons[str]
-            end
-          }
+            end,
+          },
         },
         lualine_b = {},
         lualine_c = {
-          'branch',
+          "branch",
           {
-            'diff',
+            "diff",
             symbols = { added = " ", modified = " ", remove = " " },
           },
-          'filetype' },
+          "filetype",
+        },
         lualine_x = {
           {
             "diagnostics",
-            sources = { "nvim_lsp", 'nvim_diagnostic' },
+            sources = { "nvim_lsp", "nvim_diagnostic" },
           },
           {
             get_clients,
-            icon = ""
+            icon = "",
           },
-          "location"
+          "location",
         },
         lualine_y = {},
-        lualine_z = { 'progress' }
+        lualine_z = { "progress" },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { 'branch' },
+        lualine_c = { "branch" },
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
       },
     }
-  end
+  end,
 }
