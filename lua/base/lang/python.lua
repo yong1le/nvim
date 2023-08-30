@@ -4,7 +4,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "pyright", "ruff_lsp" })
+      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "pylsp", "ruff_lsp" })
     end,
   },
   {
@@ -22,7 +22,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts.pyright = utils.merge(opts.pyright, {})
+      opts.pylsp = utils.merge(opts.pylsp, {})
+      opts.ruff_lsp = utils.merge(opts.ruff_lsp, {})
     end,
   },
   {
@@ -33,5 +34,15 @@ return {
       opts.filetypes = utils.insert_unique(opts.filetypes, { "python" })
       opts.settings.languages.python = utils.insert_unique(opts.settings.languages.python, { black })
     end,
+  },
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
+    event = { "VeryLazy" },
+    keys = {
+      { "<leader>l", desc = "+LSP" },
+      { "<leader>lv", "<cmd>VenvSelect<cr>", desc = "Select Python Virtual Env" },
+    },
+    opts = {},
   },
 }
