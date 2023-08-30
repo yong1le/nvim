@@ -20,6 +20,12 @@ return {
     end,
   },
   {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      opts.skip = utils.insert_unique(opts.skip, { "tsserver" })
+    end,
+  },
+  {
     "pmizio/typescript-tools.nvim",
     ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -33,9 +39,6 @@ return {
     opts = function(_, opts)
       local prettierd = require "efmls-configs.formatters.prettier_d"
       local eslint_d = require "efmls-configs.linters.eslint_d"
-      for i,v in pairs(eslint_d) do
-        print(i, v)
-      end
 
       local languages = { "typescript", "javascript", "typescriptreact", "javascriptreact", "tsx", "jsx" }
 

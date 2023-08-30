@@ -17,11 +17,20 @@ return {
       { "<leader>l,", "<cmd>LspStart<cr>", desc = "Start LSP Servers" },
     },
     config = function(_, opts)
-      -- Setup all servers
-      for server, conf in pairs(opts) do
-        -- global options
-        conf = utils.merge(conf, {})
-        require("lspconfig")[server].setup(conf)
+      local servers = require("mason-lspconfig").get_installed_servers()
+
+      -- Setup lsp servers
+      -- 1. If they have a configuration, set them up per their config
+      -- 2. If they don't have a config and are not "skipped", set up default
+      -- 3. If they are in skipped, don't set up their config
+      for _, server in ipairs(servers) do
+        if not vim.tbl_contains(opts.skip, server) and opts[server] == nil then
+          require("lspconfig")[server].setup {}
+        elseif opts[server] ~= nil then
+          print(server)
+          opts[server] = utils.merge(opts[server], {})
+          require("lspconfig")[server].setup(opts[server])
+        end
       end
 
       -- Diagnostics

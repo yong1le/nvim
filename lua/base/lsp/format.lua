@@ -31,4 +31,10 @@ return {
       opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "efm" })
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function (_, opts)
+      opts.skip = utils.insert_unique(opts.skip, {"efm"})
+    end
+  }
 }
