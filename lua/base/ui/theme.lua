@@ -2,6 +2,7 @@ return {
   {
     "catppuccin/nvim",
     lazy = false,
+    priority = 9999,
     opts = {
       flavour = "mocha",
       background = {
