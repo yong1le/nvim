@@ -40,9 +40,10 @@ return {
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     event = { "VeryLazy" },
     keys = {
-      { "<leader>l", desc = "+LSP" },
       { "<leader>lv", "<cmd>VenvSelect<cr>", desc = "Select Python Virtual Env" },
     },
-    opts = {},
+    opts = {
+      pyenv_path = "~/.pyenv/versions"
+    },
   },
 }

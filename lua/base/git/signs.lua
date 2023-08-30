@@ -2,8 +2,6 @@ return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufNewFile"},
   keys = {
-    { "<leader>g", desc = "+Git"},
-
     { "<leader>gh", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk"},
     { "<leader>gH", "<cmd>Gitsigns undo_stage_hunk<cr>", desc = "Unstage Hunk"},
     { "<leader>gh", "<cmd>lua require('gitsigns').stage_hunk {vim.fn.line('.'), vim.fn.line('v')} <cr>", desc = "Stage Hunk", mode = "v"},
