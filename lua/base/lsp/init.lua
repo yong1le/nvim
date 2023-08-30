@@ -27,7 +27,6 @@ return {
         if not vim.tbl_contains(opts.skip, server) and opts[server] == nil then
           require("lspconfig")[server].setup {}
         elseif opts[server] ~= nil then
-          print(server)
           opts[server] = utils.merge(opts[server], {})
           require("lspconfig")[server].setup(opts[server])
         end
