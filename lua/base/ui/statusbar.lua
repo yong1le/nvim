@@ -87,7 +87,7 @@ return {
           "branch",
           {
             "diff",
-            symbols = { added = " ", modified = " ", remove = " " },
+            symbols = { added = " ", modified = " ", removed = " " },
           },
           "filetype",
         },
