@@ -12,6 +12,11 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "folke/neodev.nvim",
     },
+    init = function()
+      require("which-key").register({
+        ["<leader>l"] = { name = "LSP" },
+      }, {})
+    end,
     keys = {
       { "<leader>l", desc = "+LSP" },
       { "<leader>l,", "<cmd>LspStart<cr>", desc = "Start LSP Servers" },
