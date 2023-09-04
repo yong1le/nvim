@@ -105,7 +105,7 @@ return {
         norg = {
           img_dir = "assets",
           img_dir_txt = "assets",
-          affix = "{/ ../%s}",
+          affix = "{/ %s}",
         },
       }
     end,
