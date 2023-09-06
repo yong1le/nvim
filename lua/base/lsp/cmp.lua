@@ -62,8 +62,9 @@ return {
           { name = "path",     priority = 250 },
         }),
         formatting = {
+          fields = {"abbr", "kind", "menu"},
           format = kind.cmp_format({
-            mode = "symbol",
+            mode = "symbol_text",
             maxwidth = 50,
             ellipsis_char = '...',
           })
@@ -83,7 +84,7 @@ return {
     },
     event = { "InsertEnter" },
     opts = {
-      history = true,
+      history = false,
       region_check_events = { "InsertEnter" },
     },
     config = function(_, opts)
