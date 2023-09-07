@@ -16,7 +16,7 @@ return {
       end
 
       local lsp_string = ""
-      local i = 1 -- Current count of attached clients
+      local i = 1;
       for _, client in ipairs(clients) do
         local client_ft = client.config.filetypes
 
@@ -24,9 +24,23 @@ return {
           goto continue
         end
 
+        if string.len(client.name)>= 20 then
+          goto continue
+        end
+
         -- Don't show full if too much clients
-        if i >= 3 then
-          lsp_string = lsp_string .. " "
+        if string.len(lsp_string .. client.name) >= 25 then
+          lsp_string = lsp_string
+          ..
+          ", "
+          ..
+          string.sub(
+            client.name,
+            1,
+            string.len(lsp_string .. client.name) - 25
+          )
+          ..
+          " "
           break
         end
         if i == 1 then
@@ -34,7 +48,7 @@ return {
         else
           lsp_string = lsp_string .. ", " .. client.name
         end
-        i = i + 1;
+        i = i + 1
 
         ::continue::
       end
@@ -42,23 +56,23 @@ return {
     end
 
     local mode_icons = {
-      NORMAL = "󰽻",
+      [ "NORMAL" ] = "󰽻",
       ["O-PENDING"] = "󰥔",
-      VISUAL = "󰆐",
+      [ "VISUAL" ] = "󰆐",
       ["V-LINE"] = "󰆐",
       ["V-BLOCK"] = "󰆐",
-      SELECT = "󰌇",
+      [ "SELECT" ] = "󰌇",
       ["S-LINE"] = "󰌇",
       ["S-BLOCK"] = "󰌇",
-      INSERT = "󰏫",
-      REPLACE = "󰛔",
+      [ "INSERT" ] = "󰏫",
+      [ "REPLACE" ] = "󰛔",
       ["V-REPLACE"] = "󰛔",
-      COMMAND = "󰘳",
-      EX = "󰘳",
-      MORE = "",
-      CONFIRM = "",
-      SHELL = "",
-      TERMINAL = "",
+      [ "COMMAND" ] = "󰘳",
+      [ "EX" ] = "󰘳",
+      [ "MORE" ] = "",
+      [ "CONFIRM" ] = "",
+      [ "SHELL" ] = "",
+      [ "TERMINAL" ] = "",
     }
 
     return {
