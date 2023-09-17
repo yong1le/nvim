@@ -97,6 +97,7 @@ return {
       require("clipboard-image").setup {
         default = {
           img_dir = "assets",
+          img_dir_txt = "assets",
           img_name = function()
             return os.date "%Y-%m-%d-%H-%M-%S"
           end,
@@ -107,6 +108,11 @@ return {
           img_dir_txt = "assets",
           affix = "{/ %s}",
         },
+        tex = {
+          img_dir = "assets",
+          img_dir_txt = "assets",
+          affix = "\\includegraphics[width=\\linewidth]{%s}"
+        }
       }
     end,
   },
