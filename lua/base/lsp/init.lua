@@ -9,7 +9,6 @@ return {
     event = "BufEnter",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "folke/neodev.nvim",
     },
     init = function()
@@ -24,17 +23,8 @@ return {
     config = function(_, opts)
       local servers = require("mason-lspconfig").get_installed_servers()
 
-      -- Setup lsp servers
-      -- 1. If they have a configuration, set them up per their config
-      -- 2. If they don't have a config and are not "skipped", set up default
-      -- 3. If they are in skipped, don't set up their config
       for _, server in ipairs(servers) do
-        if not vim.tbl_contains(opts.skip, server) and opts[server] == nil then
-          require("lspconfig")[server].setup {}
-        elseif opts[server] ~= nil then
-          opts[server] = utils.merge(opts[server], {})
-          require("lspconfig")[server].setup(opts[server])
-        end
+        require("lspconfig")[server].setup {}
       end
 
       -- Diagnostics
@@ -85,7 +75,6 @@ return {
           map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt "Go to Definition")
           map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt "Go to Declaration")
           map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opt "Go to Implementation")
-          -- map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts("Hover Signature"))
           map("n", "gr", "<cmd> lua vim.lsp.buf.references()<cr>", opt "Go to References")
           map("n", "gl", "<cmd> lua vim.diagnostic.open_float()<cr>", opt "Show Line Diagnostics")
 

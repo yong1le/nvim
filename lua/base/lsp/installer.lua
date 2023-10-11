@@ -20,13 +20,4 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-    config = function(_, opts)
-      require("mason-tool-installer").setup(opts)
-    end,
-  },
 }

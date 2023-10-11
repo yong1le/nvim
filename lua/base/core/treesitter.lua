@@ -24,8 +24,8 @@ return {
       "TSUpdateSync",
     },
     opts = {
-      ensure_installed = {}, -- extend in individual language configs
-      auto_install = false,
+      ensure_installed = {},
+      auto_install = true,
       autotag = {
         enable = true,
         enable_close_on_slash = false,
@@ -48,7 +48,6 @@ return {
         enable_autocmd = false,
       },
       indent = { enable = true },
-      -- TODO: Find out what these are and add them
       textobjects = {},
       move = {},
       swap = {},

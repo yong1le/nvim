@@ -56,16 +56,4 @@ return {
       }
     end,
   },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = utils.insert_unique(opts.ensure_installed, { "texlab" })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.texlab = utils.merge(opts.texlab, {})
-    end,
-  },
 }
