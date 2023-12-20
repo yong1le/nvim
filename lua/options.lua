@@ -3,16 +3,21 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
 -- GUI related stuff
-vim.opt.guifont = "OperatorMono Nerd Font:h16"
-vim.g.neovide_background_color = "#30343c"
+vim.opt.guifont = "IosevkaTerm Nerd Font Mono:h16"
 vim.g.neovide_floating_blur_amount_x = 2.0
 vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_input_macos_alt_is_meta = true
+vim.g.neovide_padding_top = 20
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 10
+vim.g.neovide_padding_left = 10
+vim.g.neovide_hide_mouse_when_typing = true
+
+
 vim.g.colors_name = "catppuccin"
 
 -- Editor options
--- From Astrovim: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
 vim.opt.breakindent = true                                     -- Wrap indent to match line start
 vim.opt.clipboard = "unnamedplus"                              -- Connection to the system clipboard
 vim.opt.cmdheight = 1                                          -- hide command line unless needed
@@ -21,7 +26,6 @@ vim.opt.copyindent = false                                     -- Copy the previ
 vim.opt.cursorline = true                                      -- Highlight the current line
 vim.opt.expandtab = true                                       -- Enable the use of space in tab
 vim.opt.fileencoding = "utf-8"                                 -- File content encoding for the buffer
-vim.opt.fillchars = {eob =  " ",fold = " " ,foldopen = "", foldsep = " ", foldclose = ""}
 vim.opt.foldenable = true                                      -- enable fold for nvim-ufo
 vim.opt.foldlevel = 99                                         -- set high foldlevel for nvim-ufo
 vim.opt.foldlevelstart = 99                                    -- start with all code unfolded
@@ -59,7 +63,7 @@ vim.opt.colorcolumn = "79"
 vim.opt.list = true                                            -- show whitespaces characters
 vim.opt.showbreak = "↪ "                                     -- show line breaks
 vim.opt.listchars = {
-  tab = "│→",
+  tab = "  ",
   extends = "⟩",
   precedes = "⟨",
   trail = "·",

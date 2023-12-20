@@ -14,12 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
+
 require('lazy').setup {
   spec = {
-    { import = 'vscode.base' },
+    { import = 'plugins' },
   },
   defaults = { lazy = true, version = nil },
-  install = { missing = true, colorscheme = { 'catppuccin' } },
+  install = { missing = true, colorscheme = { 'kanagawa' } },
+  ui = { border = "single"},
   checker = { enabled = false },
   performance = {
     rtp = {
@@ -36,3 +38,4 @@ require('lazy').setup {
     },
   },
 }
+

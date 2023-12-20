@@ -24,7 +24,7 @@ return {
       "TSUpdateSync",
     },
     opts = {
-      ensure_installed = {},
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
       auto_install = true,
       autotag = {
         enable = true,
@@ -38,21 +38,32 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "yn",
+          init_selection = "+",
           node_incremental = "+",
           node_decremental = "-",
         },
       },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
       indent = { enable = true },
-      textobjects = {},
-      move = {},
-      swap = {},
+      textobjects = {
+        select = {
+          enable = true,
+          -- Jump to next occurence
+          lookahead = true,
+          keymaps = {
+            ["af"] = { query = "@function.outer", desc = "Select around function" },
+            ["if"] = { query = "@function.inner", desc = "Select inside function" },
+            ["ac"] = { query = "@class.outer", desc = "Select around class" },
+            ["ic"] = { query = "@class.inner", desc = "Select inside class" },
+            ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+          },
+          include_surrounding_whitespace = true,
+        },
+        move = {},
+        swap = {},
+      },
     },
     config = function(_, opts)
+      vim.g.skip_ts_context_commentstring_module = true
       require("nvim-treesitter.configs").setup(opts)
     end,
   },

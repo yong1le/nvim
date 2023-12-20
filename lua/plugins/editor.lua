@@ -1,4 +1,33 @@
 return {
+  -- Remember your keybindings
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      plugins = {
+        spelling = { enabled = false },
+      },
+      window = {
+        border = "single",
+      },
+      key_labels = {
+        ["<space>"] = "SPC",
+        ["<cr>"] = "RET",
+        ["<tab>"] = "TAB",
+      },
+    },
+    config = function(_, opts)
+      require("which-key").setup(opts)
+    end,
+  },
+
+  -- Navigate seemlessly between vim splits and tmux panes
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VeryLazy",
+  },
+
+  -- Fuzzy finder :>
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -13,6 +42,7 @@ return {
     end,
     keys = {
       { "<leader>f", desc = "+Find" },
+      { "<leader>b", "<cmd>lua require('telescope.builtin').buffers{}<cr>", desc = "Find Buffers" },
       { "<leader>fg", desc = "+Git" },
       { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files{}<cr>", desc = "Find Files" },
       { "<leader>fb", "<cmd>lua require('telescope.builtin').buffers{}<cr>", desc = "Find Buffers" },
@@ -46,5 +76,38 @@ return {
       require("telescope").setup(opts)
       require("telescope").load_extension "fzf"
     end,
+  },
+
+  -- Jump anywhere
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, "<cmd>lua require('flash').jump()<cr>", desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, "<cmd>lua require('flash').treesitter() <cr>", desc = "Flash Treesitter" },
+    },
+  },
+
+  -- Better Quickfix
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+  },
+
+  -- File Management in a buffer
+  {
+    "echasnovski/mini.files",
+    version = false,
+    keys = {
+      { "<leader>e", "<cmd>lua require('mini.files').open()<cr>", desc = "Open File Manager" },
+    },
+    opts = {
+      mappings = {
+        close = "<leader>e",
+        trim_left = ">",
+        trim_right = "<"
+      }
+    }
   },
 }

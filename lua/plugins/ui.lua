@@ -1,0 +1,85 @@
+return {
+  -- <3
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 9999,
+    opts = {
+      compile = false,
+      undercurl = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,
+      dimInactive = false,
+      terminalColors = true,
+      colors = {
+        palette = {},
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+      overrides = function(colors)
+        return {
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+        }
+      end,
+    },
+    config = function(_, opts)
+      require("kanagawa").setup(opts)
+      require("kanagawa").load("wave")
+    end,
+  },
+
+  -- Better select prompts
+  {
+    'stevearc/dressing.nvim',
+    event = 'BufEnter',
+    opts = {},
+  },
+
+  -- Start screen
+  {
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    opts = function()
+    end,
+    config = function()
+      local opts = require('config.alpha')
+      require('alpha').setup(opts)
+
+      local dashboard = require("alpha.themes.dashboard")
+      vim.api.nvim_create_autocmd("User", {
+      pattern = "LazyVimStarted",
+      callback = function()
+        local stats = require("lazy").stats()
+        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+        pcall(vim.cmd.AlphaRedraw)
+      end,
+    })
+    end,
+  },
+
+  -- Statusbar
+  {
+  "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "lewis6991/gitsigns.nvim"
+  },
+  event = "BufEnter",
+    config = function()
+      local opts = require('config.lualine')
+      require('lualine').setup(opts)
+    end
+}
+}

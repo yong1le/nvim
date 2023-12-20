@@ -9,4 +9,9 @@ autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
 })
 
-
+-- if vim.g.neovide then
+--   autocmd("VimEnter", {
+--     pattern = "*",
+--     command = "cd ~/Documents/code/"
+--   })
+-- end
