@@ -31,21 +31,22 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       linters_by_ft = {
-        javascript = { { "eslint_d", "eslint" } },
-        typescript = { { "eslint_d", "eslint" } },
-        javascriptreact = { { "eslint_d", "eslint" } },
-        typescriptreact = { { "eslint_d", "eslint" } },
-        svelte = { { "eslint_d", "eslint" } },
-        astro = { { "eslint_d", "eslint" } },
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        svelte = { "eslint_d" },
+        astro = { "eslint_d" },
       },
     },
     config = function(_, opts)
-      require("lint").linters_by_ft = opts.linters_by_ft
+      local lint = require "lint"
+      lint.linters_by_ft = opts.linters_by_ft
 
       -- Trigger linting leaving insert mode
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
         callback = function()
-          require("lint").try_lint()
+          lint.try_lint()
         end,
       })
     end,
