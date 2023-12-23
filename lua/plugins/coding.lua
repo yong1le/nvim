@@ -42,17 +42,6 @@ return {
       check_ts = true,
       map_cr = true,
       map_bs = true,
-      fast_wrap = {
-        map = "<M-w>",
-        chars = { "{", "[", "(", '"', "'" },
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-        offset = 0,
-        end_key = "$",
-        keys = "qwertyuiopzxcvbnmasdfghjkl",
-        check_comma = true,
-        highlight = "PmenuSel",
-        highlight_grey = "LineNr",
-      },
     },
     config = function(_, opts)
       require("nvim-autopairs").setup(opts)
@@ -68,20 +57,6 @@ return {
     },
     config = function(_, opts)
       require("better_escape").setup(opts)
-    end,
-  },
-
-  -- Enhanced global marks jumping
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    keys = {
-      { "<leader>h", function() require("harpoon"):list():append() end, desc = "Add Harpoon Breakpoint"},
-      { "<leader><leader>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Open Harpoon"}
-    },
-    config = function(_, opts)
-      require("harpoon"):setup(opts)
     end,
   },
 }
