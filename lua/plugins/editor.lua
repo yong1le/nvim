@@ -42,7 +42,6 @@ return {
     end,
     keys = {
       { "<leader>f", desc = "+Find" },
-      { "<leader>b", "<cmd>lua require('telescope.builtin').buffers{}<cr>", desc = "Find Buffers" },
       { "<leader>fg", desc = "+Git" },
       { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files{}<cr>", desc = "Find Files" },
       { "<leader>fb", "<cmd>lua require('telescope.builtin').buffers{}<cr>", desc = "Find Buffers" },
@@ -106,8 +105,29 @@ return {
       mappings = {
         close = "<leader>e",
         trim_left = ">",
-        trim_right = "<"
-      }
-    }
+        trim_right = "<",
+      },
+    },
+  },
+
+  -- Remove buffers while persisting layout
+  {
+    "echasnovski/mini.bufremove",
+    version = false,
+    init = function()
+      require("which-key").register({
+        ["<leader>b"] = { name = "Buffers" },
+      }, {})
+    end,
+    keys = {
+      { "<leader>bd", "<cmd>lua require('mini.bufremove').delete()<cr>", desc = "Delete Current Buffer" },
+      { "<leader>bw", "<cmd>lua require('mini.bufremove').wipeout()<cr>", desc = "Wipeout Buffers" },
+    },
+    opts = {
+      silent = true,
+    },
+    config = function(_, opts)
+      require("mini.bufremove").setup(opts)
+    end,
   },
 }
