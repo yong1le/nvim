@@ -106,6 +106,10 @@ return {
         close = "<leader>e",
         trim_left = ">",
         trim_right = "<",
+        go_in = "L",
+        go_out = "H",
+        reset = "<BS>",
+        synchronize = "<CR>"
       },
     },
   },
