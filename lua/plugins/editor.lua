@@ -44,6 +44,7 @@ return {
       { "<leader>f", desc = "+Find" },
       { "<leader>fg", desc = "+Git" },
       { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files{}<cr>", desc = "Find Files" },
+      { "<leader>fF", "<cmd>lua require('telescope.builtin').find_files{hidden=true}<cr>", desc = "Find All Files" },
       { "<leader>fb", "<cmd>lua require('telescope.builtin').buffers{}<cr>", desc = "Find Buffers" },
       { "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep{}<cr>", desc = "Look for Word" },
       { "<leader>fr", "<cmd>lua require('telescope.builtin').oldfiles{}<cr>", desc = "Recent Files" },

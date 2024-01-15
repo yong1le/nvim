@@ -37,9 +37,24 @@ return {
       load = {
         ["core.defaults"] = {},
         ["core.keybinds"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              code = "~/Documents/notes/code",
+              faith = "~/Documents/notes/faith",
+            },
+            index = "index.norg",
+          },
+        },
+        ["core.journal"] = {
+          config = {
+            strategy = "flat",
+            workspace = "faith"
+          },
+        },
         ["core.concealer"] = {
           config = {
-            folds = false,
+            folds = true,
             icon_preset = "diamond",
           },
         },

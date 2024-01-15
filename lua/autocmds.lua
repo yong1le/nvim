@@ -54,6 +54,9 @@ autocmd("FileType", {
         l = { "<cmd>Telescope neorg insert_link<cr>", "Insert Link" },
         f = { "<cmd>Telescope neorg insert_file_link<cr>", "Insert File Link" },
       },
+      j = {
+        t = { "<cmd>Neorg journal today<cr>", "Create Journal for Today"}
+      },
       l = {
         name = "List",
       },
@@ -71,5 +74,13 @@ autocmd("FileType", {
       },
       t = { name = "Task" },
     }, { mode = "n", buffer = event.buf, prefix = "<LocalLeader>" })
+  end,
+})
+
+autocmd("FileType", {
+  desc = "Change tab mapping on norg files",
+  pattern = "norg",
+  callback = function()
+    vim.keymap.set("n", "<tab>", "za", { desc = "Toggle fold" })
   end,
 })

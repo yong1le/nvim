@@ -2,7 +2,17 @@ local servers = require("mason-lspconfig").get_installed_servers()
 
 -- Setup all servers
 for _, server in ipairs(servers) do
-  require("lspconfig")[server].setup {}
+  if server == "arduino_language_server" then
+    require("lspconfig")["arduino_language_server"].setup {
+      cmd = {
+        "arduino-language-server",
+        "-cli-config",
+        "/Users/yongle/Library/Arduino15/arduino-cli.yaml",
+      },
+    }
+  else
+    require("lspconfig")[server].setup {}
+  end
 end
 
 -- Diagnostics

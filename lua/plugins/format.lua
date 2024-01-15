@@ -21,6 +21,8 @@ return {
         typescriptreact = { { "prettierd", "prettier" } },
         svelte = { { "prettierd", "prettier" } },
         astro = { { "prettierd", "prettier" } },
+        yaml = { { "prettierd", "prettier" } },
+        json = { { "prettierd", "prettier" } },
       },
     },
   },
