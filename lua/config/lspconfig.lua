@@ -1,20 +1,3 @@
-local servers = require("mason-lspconfig").get_installed_servers()
-
--- Setup all servers
-for _, server in ipairs(servers) do
-  if server == "arduino_language_server" then
-    require("lspconfig")["arduino_language_server"].setup {
-      cmd = {
-        "arduino-language-server",
-        "-cli-config",
-        "/Users/yongle/Library/Arduino15/arduino-cli.yaml",
-      },
-    }
-  else
-    require("lspconfig")[server].setup {}
-  end
-end
-
 -- Diagnostics
 vim.diagnostic.config {
   virtual_text = false,

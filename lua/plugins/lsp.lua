@@ -24,8 +24,10 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       "williamboman/mason.nvim",
+      "pmizio/typescript-tools.nvim",
     },
-    config = function(_, opts)
+    config = function()
+      local opts = require "config.servers"
       require("mason-lspconfig").setup(opts)
     end,
   },
@@ -90,4 +92,6 @@ return {
       require("luasnip").filetype_extend("javascript", { "javascriptreact" })
     end,
   },
+
+  -- Language Specific
 }
