@@ -92,6 +92,4 @@ return {
       require("luasnip").filetype_extend("javascript", { "javascriptreact" })
     end,
   },
-
-  -- Language Specific
 }

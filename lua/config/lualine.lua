@@ -49,7 +49,7 @@ local get_clients = function()
 end
 
 local mode_icons = {
-  [ "NORMAL" ] = "󰽻",
+  [ "NORMAL" ] = "",
   ["O-PENDING"] = "󰥔",
   [ "VISUAL" ] = "󰆐",
   ["V-LINE"] = "󰆐",
@@ -64,7 +64,7 @@ local mode_icons = {
   [ "EX" ] = "󰘳",
   [ "MORE" ] = "",
   [ "CONFIRM" ] = "",
-  [ "SHELL" ] = "",
+  [ "SHELL" ] = "",
   [ "TERMINAL" ] = "",
 }
 
@@ -94,7 +94,7 @@ return {
       "branch",
       {
         "diff",
-        symbols = { added = " ", modified = " ", removed = " " },
+        symbols = { added = " ", modified = "󱨇 ", removed = " " },
       },
       "filetype",
     },

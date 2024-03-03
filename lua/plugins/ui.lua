@@ -1,42 +1,17 @@
 return {
   -- <3
-  {
-    "rebelot/kanagawa.nvim",
+  { 
+    "catppuccin/nvim",
     lazy = false,
-    priority = 9999,
+    name = "catppuccin",
+    priority = 1000,
     opts = {
-      compile = false,
-      undercurl = true,
-      commentStyle = { italic = true },
-      functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = {},
-      transparent = false,
-      dimInactive = false,
-      terminalColors = true,
-      colors = {
-        palette = {},
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-            },
-          },
-        },
-      },
-      overrides = function(colors)
-        return {
-          NormalFloat = { bg = "none" },
-          FloatBorder = { bg = "none" },
-          FloatTitle = { bg = "none" },
-        }
-      end,
+      flavor = "mocha"
     },
-    config = function(_, opts)
-      require("kanagawa").setup(opts)
-      require("kanagawa").load "wave"
-    end,
+    config = function (_, opts)
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme "catppuccin"
+    end
   },
 
   -- Better select prompts
