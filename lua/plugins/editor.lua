@@ -97,20 +97,22 @@ return {
 
   -- File Management in a buffer
   {
-    "echasnovski/mini.files",
-    version = false,
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>e", "<cmd>lua require('mini.files').open()<cr>", desc = "Open File Manager" },
+      { "<leader>e", "<cmd>Oil --float<cr>", desc = "Open File Manager" },
     },
     opts = {
-      mappings = {
-        close = "<leader>e",
-        trim_left = ">",
-        trim_right = "<",
-        go_in = "L",
-        go_out = "H",
-        reset = "<BS>",
-        synchronize = "<CR>"
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["<CR>"] = "actions.select",
+        ["<C-s>"] = "actions.select_vsplit",
+        ["<C-h>"] = "actions.select_split",
+        ["<C-p>"] = "actions.preview",
+        ["<leader>e"] = "actions.close",
+        ["-"] = "actions.parent",
+        ["="] = "actions.open_cwd",
+        ["g."] = "actions.toggle_hidden",
       },
     },
   },
