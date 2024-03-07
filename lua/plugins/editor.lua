@@ -97,24 +97,21 @@ return {
 
   -- File Management in a buffer
   {
-    "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = "Neotree",
     keys = {
-      { "<leader>e", "<cmd>Oil --float<cr>", desc = "Open File Manager" },
+      { "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "Toggle Explorer", mode = { "n", "v" } },
     },
-    opts = {
-      keymaps = {
-        ["g?"] = "actions.show_help",
-        ["<CR>"] = "actions.select",
-        ["<C-s>"] = "actions.select_vsplit",
-        ["<C-h>"] = "actions.select_split",
-        ["<C-p>"] = "actions.preview",
-        ["<leader>e"] = "actions.close",
-        ["-"] = "actions.parent",
-        ["="] = "actions.open_cwd",
-        ["g."] = "actions.toggle_hidden",
-      },
-    },
+    config = function()
+      local opts = require "config.neotree"
+      require("neo-tree").setup(opts)
+    end,
   },
 
   -- Remove buffers while persisting layout

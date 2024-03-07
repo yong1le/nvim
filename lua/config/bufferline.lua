@@ -30,5 +30,13 @@ return {
       reveal = { "close" },
     },
     sort_by = "insert_at_end",
+    offsets = {
+      {
+        filetype = "neo-tree",
+        text = "File Explorer",
+        separator = true,
+        text_align = "center",
+      },
+    },
   },
 }
