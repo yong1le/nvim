@@ -18,6 +18,7 @@ vim.g.neovide_hide_mouse_when_typing = true
 vim.g.colors_name = "catppuccin"
 
 -- Editor options
+vim.opt.swapfile = false
 vim.opt.breakindent = true                                     -- Wrap indent to match line start
 vim.opt.clipboard = "unnamedplus"                              -- Connection to the system clipboard
 vim.opt.cmdheight = 1                                          -- hide command line unless needed
