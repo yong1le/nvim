@@ -1,8 +1,32 @@
 return {
   -- <3
   {
-    "rebelot/kanagawa.nvim",
+    "rose-pine/neovim",
+    name = "rose-pine",
     lazy = false,
+    priority = 9999,
+    opts = {
+      variant = "main",
+      dark_variant = "main",
+      dim_inactive_windows = false,
+      extend_background_behind_borders = false,
+      enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true,        -- Handle deprecated options automatically
+      },
+      groups = {
+        border = "iris",
+      },
+    },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+      vim.cmd("colorscheme rose-pine")
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    -- lazy = false,
     priority = 9999,
     opts = {
       compile = false,
@@ -12,7 +36,7 @@ return {
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = {},
-      transparent = false,
+      transparent = true,
       dimInactive = false,
       terminalColors = true,
       colors = {
@@ -61,7 +85,7 @@ return {
         callback = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+          dashboard.section.footer.val = "Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
           pcall(vim.cmd.AlphaRedraw)
         end,
       })
@@ -96,12 +120,12 @@ return {
       }, {})
     end,
     keys = {
-      { "<tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous Buffer" },
-      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Delete Other Buffers" },
-      { "<leader><leader>", "<cmd>BufferLinePick<cr>", desc = "Pick Buffer" },
-      { "<leader>bp", "<cmd>BufferLineMovePrev<cr>", desc = "Move Buffer Forward" },
-      { "<leader>bn", "<cmd>BufferLineMoveNext<cr>", desc = "Move Buffer Backward" },
+      { "<tab>",            "<cmd>BufferLineCycleNext<cr>",   desc = "Next Buffer" },
+      { "<S-tab>",          "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous Buffer" },
+      { "<leader>bo",       "<cmd>BufferLineCloseOthers<cr>", desc = "Delete Other Buffers" },
+      { "<leader><leader>", "<cmd>BufferLinePick<cr>",        desc = "Pick Buffer" },
+      { "<leader>bp",       "<cmd>BufferLineMovePrev<cr>",    desc = "Move Buffer Forward" },
+      { "<leader>bn",       "<cmd>BufferLineMoveNext<cr>",    desc = "Move Buffer Backward" },
     },
     config = function()
       local opts = require "config.bufferline"
