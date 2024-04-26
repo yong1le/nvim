@@ -1,66 +1,29 @@
 return {
   -- <3
+  -- {
+  --   "catppuccin/nvim",
+  --   lazy = false,
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   opts = {
+  --     flavor = "mocha"
+  --   },
+  --   config = function (_, opts)
+  --     require('catppuccin').setup(opts)
+  --     vim.cmd.colorscheme "catppuccin"
+  --   end
+  -- },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
     lazy = false,
-    priority = 9999,
     opts = {
-      variant = "main",
-      dark_variant = "main",
-      dim_inactive_windows = false,
-      extend_background_behind_borders = false,
-      enable = {
-        terminal = true,
-        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-        migrations = true,        -- Handle deprecated options automatically
-      },
-      groups = {
-        border = "iris",
-      },
+      terminal_colors = true,
     },
     config = function(_, opts)
-      require("rose-pine").setup(opts)
-      vim.cmd("colorscheme rose-pine")
-    end,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    -- lazy = false,
-    priority = 9999,
-    opts = {
-      compile = false,
-      undercurl = true,
-      commentStyle = { italic = true },
-      functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = {},
-      transparent = true,
-      dimInactive = false,
-      terminalColors = true,
-      colors = {
-        palette = {},
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-            },
-          },
-        },
-      },
-      overrides = function(colors)
-        return {
-          NormalFloat = { bg = "none" },
-          FloatBorder = { bg = "none" },
-          FloatTitle = { bg = "none" },
-        }
-      end,
-    },
-    config = function(_, opts)
-      require("kanagawa").setup(opts)
-      require("kanagawa").load("wave")
-    end,
+      require("gruvbox").setup(opts)
+      vim.cmd([[colorscheme gruvbox]])
+    end
   },
 
   -- Better select prompts

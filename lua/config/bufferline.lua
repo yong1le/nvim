@@ -39,5 +39,4 @@ return {
       },
     },
   },
-  	highlights = require("rose-pine.plugins.bufferline")
 }
