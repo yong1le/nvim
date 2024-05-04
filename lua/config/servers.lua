@@ -1,5 +1,10 @@
 return {
-  ensure_installed = {},
+  ensure_installed = {
+    "cssls",
+    "html",
+    "tsserver",
+    "clangd",
+  },
   handlers = {
     function(server_name)
       require("lspconfig")[server_name].setup {}
@@ -15,6 +20,14 @@ return {
     end,
     ["tsserver"] = function ()
       require("typescript-tools").setup{}
-    end
+    end,
+    ["cssls"] = function ()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      require'lspconfig'.cssls.setup {
+        capabilities = capabilities,
+      }
+    end,
   },
 }

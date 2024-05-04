@@ -17,8 +17,6 @@ local opts = {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif snip.expand_or_jumpable() then
-        snip.expand_or_jump()
       else
         fallback()
       end
@@ -26,8 +24,6 @@ local opts = {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif snip.jumpable(-1) then
-        snip.jump(-1)
       else
         fallback()
       end
