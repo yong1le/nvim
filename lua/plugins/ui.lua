@@ -1,18 +1,4 @@
 return {
-  -- <3
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   opts = {
-  --     flavor = "mocha"
-  --   },
-  --   config = function (_, opts)
-  --     require('catppuccin').setup(opts)
-  --     vim.cmd.colorscheme "catppuccin"
-  --   end
-  -- },
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
@@ -95,4 +81,17 @@ return {
       require("bufferline").setup(opts)
     end,
   },
+
+  -- Highlighting Colors
+  {
+    "brenoprata10/nvim-highlight-colors",
+    event = "VeryLazy",
+    opts = {
+      enable_tailwind = true
+    },
+    config = function(_, opts)
+      require("nvim-highlight-colors").setup(opts)
+    end,
+
+  }
 }
