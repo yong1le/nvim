@@ -47,9 +47,7 @@ return {
 
       -- Trigger linting leaving insert mode
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
-        callback = function()
-          lint.try_lint()
-        end,
+        command = "silent! lua require('lint').try_lint()"
       })
     end,
   },
