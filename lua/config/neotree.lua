@@ -2,7 +2,6 @@ return {
   close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
-  enable_normal_mode_for_inputs = true,
   open_files_do_not_replace_types = { "terminal", "trouble", "qf", "toggleterm" },
   default_component_configs = {
     git_status = {
