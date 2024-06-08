@@ -8,23 +8,8 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     event = { "BufReadPost", "BufNewFile" },
-    cmd = {
-      "TSBufDisable",
-      "TSBufEnable",
-      "TSBufToggle",
-      "TSDisable",
-      "TSEnable",
-      "TSToggle",
-      "TSInstall",
-      "TSInstallInfo",
-      "TSInstallSync",
-      "TSModuleInfo",
-      "TSUninstall",
-      "TSUpdate",
-      "TSUpdateSync",
-    },
     opts = {
-      ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+      ensure_installed = "all",
       auto_install = true,
       autotag = {
         enable = true,
@@ -43,7 +28,6 @@ return {
           node_decremental = "-",
         },
       },
-      indent = { enable = true },
       textobjects = {
         select = {
           enable = true,
@@ -61,10 +45,36 @@ return {
         move = {},
         swap = {},
       },
+      indent = { enable = true },
     },
     config = function(_, opts)
       vim.g.skip_ts_context_commentstring_module = true
       require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+
+  -- Extend textobjects using TS
+  {
+    "echasnovski/mini.ai",
+    event = "VeryLazy",
+    version = false,
+    opts = {
+      custom_textobjects = nil,
+      mappings = {
+        around = "a",
+        inside = "i",
+        around_next = "an",
+        inside_next = "in",
+        around_last = "al",
+        inside_last = "il",
+
+        -- Move cursor to corresponding edge of `a` textobject
+        goto_left = "g[",
+        goto_right = "g]",
+      },
+      n_lines = 50,
+      search_method = "cover_or_next",
+      silent = false,
+    },
   },
 }

@@ -44,6 +44,7 @@ return {
       { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
     },
     opts = {
+      current_line_blame = true,
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
