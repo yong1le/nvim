@@ -1,16 +1,16 @@
 return {
   {
-    "ellisonleao/gruvbox.nvim",
+    "olimorris/onedarkpro.nvim",
     priority = 1000,
     lazy = false,
     opts = {
-      terminal_colors = true,
-      transparent_mode = true,
-      contrast = "hard"
+      options = {
+        transparency = true
+      }
     },
     config = function(_, opts)
-      require("gruvbox").setup(opts)
-      vim.cmd([[colorscheme gruvbox]])
+      require("onedarkpro").setup(opts)
+      vim.cmd([[colorscheme onedark]])
     end
   },
 
