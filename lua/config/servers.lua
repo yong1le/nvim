@@ -4,6 +4,8 @@ return {
     "html",
     "tsserver",
     "clangd",
+    "lua_ls",
+    "pylsp"
   },
   handlers = {
     function(server_name)
